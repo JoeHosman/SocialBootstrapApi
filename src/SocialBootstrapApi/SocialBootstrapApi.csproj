@@ -39,41 +39,54 @@
       <Private>True</Private>
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack, Version=3.5.5.30080, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.6.0.18544, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.dll</HintPath>
+      <HintPath>..\..\lib\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Common, Version=3.5.5.30076, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Driver, Version=1.6.0.18544, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.Common.dll</HintPath>
+      <HintPath>..\..\lib\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ServiceStack.3.8.5\lib\net35\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Authentication.MongoDB">
+      <HintPath>packages\ServiceStack.Authentication.MongoDB.3.8.2\lib\ServiceStack.Authentication.MongoDB.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ServiceStack.Common.3.8.5\lib\net35\ServiceStack.Common.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.FluentValidation.Mvc3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\ServiceStack.FluentValidation.Mvc3.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces, Version=3.5.5.30073, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Interfaces, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>packages\ServiceStack.Common.3.8.5\lib\net35\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.OrmLite, Version=3.5.5.29931, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.OrmLite, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.OrmLite.dll</HintPath>
+      <HintPath>packages\ServiceStack.OrmLite.SqlServer.3.8.5\lib\ServiceStack.OrmLite.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.OrmLite.SqlServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+      <HintPath>packages\ServiceStack.OrmLite.SqlServer.3.8.5\lib\ServiceStack.OrmLite.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Redis, Version=3.5.2.5612, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.Redis.dll</HintPath>
+    <Reference Include="ServiceStack.RazorEngine">
+      <HintPath>packages\ServiceStack.3.8.5\lib\net35\ServiceStack.RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.ServiceInterface, Version=1.0.4439.30087, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Redis, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.ServiceInterface.dll</HintPath>
+      <HintPath>packages\ServiceStack.Redis.3.8.5\lib\net35\ServiceStack.Redis.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.5.5.29745, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.ServiceInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ServiceStack.Text.dll</HintPath>
+      <HintPath>packages\ServiceStack.3.8.5\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ServiceStack.Text.3.8.5\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -106,6 +119,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\SecureController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
+    <Compile Include="Logic\MongoDBUserRepo.cs" />
     <Compile Include="Models\CustomUserSession.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Logic\TwitterGateway.cs" />

@@ -186,13 +186,13 @@ namespace SocialBootstrapApi
             container.RegisterAs<CustomRegistrationValidator, IValidator<Registration>>();
 
             //Create a DB Factory configured to access the UserAuth SQL Server DB
-            var mongoDb = CreateMongoDatabase("testing_database");
+            var mongoDb = CreateMongoDatabase("tst_db");
 
 
             //Store User Data into the referenced SqlServer database
             //container.Register<IUserAuthRepository>(c =>
             //    new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>())); //Use OrmLite DB Connection to persist the UserAuth and AuthProvider info
-            var authRepository = new MongoDBAuthRepository(mongoDb);
+            var authRepository = new MongoDBAuthRepositoryNew(mongoDb);
             container.Register<IUserAuthRepository>(authRepository);
 
             
