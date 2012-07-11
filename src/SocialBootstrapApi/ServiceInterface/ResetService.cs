@@ -1,3 +1,4 @@
+using HTA.ServiceModel;
 using ServiceStack.CacheAccess;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceHost;

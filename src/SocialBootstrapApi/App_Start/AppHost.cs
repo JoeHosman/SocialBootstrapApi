@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using HTA.Data.MongoDB;
+using HTA.ServiceModel;
 using MongoDB.Driver;
 using ServiceStack.CacheAccess;
 using ServiceStack.CacheAccess.Providers;
@@ -110,9 +112,17 @@ namespace SocialBootstrapApi
             //Enable Authentication an Registration
             ConfigureAuth(container);
 
-            //Create you're own custom User table
-            //var dbFactory = container.Resolve<IDbConnectionFactory>();
-            //dbFactory.Exec(dbCmd => dbCmd.CreateTable<User>(overwrite: true));
+            ////Create you're own custom User table
+            var userRepository = new MongoRepository(CreateMongodatabase("hta", new MongoServerSettings() { Server = new MongoServerAddress("localhost") }));
+
+
+            if (appSettings.Get("RecreateAuthTables", false))
+                userRepository.DropAndReCreateTables(); //Drop and re-create all Auth and registration tables
+            else
+                userRepository.CreateMissingTables();   //Create only the missing tables
+
+            container.Register<IUserRepository>(userRepository);
+            container.Register<IAuthsRepository>(userRepository);
 
             //Register application services
             container.Register(new TodoRepository());
@@ -186,17 +196,23 @@ namespace SocialBootstrapApi
             container.RegisterAs<CustomRegistrationValidator, IValidator<Registration>>();
 
             //Create a DB Factory configured to access the UserAuth SQL Server DB
-            var mongoDb = CreateMongoDatabase("tst_db");
+            //var connStr = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
+            //    ConfigUtils.GetConnectionString("UserAuth"));
+            //container.Register<IDbConnectionFactory>(
+            //    new OrmLiteConnectionFactory(connStr, //ConnectionString in Web.Config
+            //        SqlServerOrmLiteDialectProvider.Instance) {
+            //            ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
+            //        });
 
+            var mongoDatabase = CreateMongodatabase("hta", new MongoServerSettings() { Server = new MongoServerAddress("localhost") });
+            container.Register(mongoDatabase);
 
             //Store User Data into the referenced SqlServer database
-            //container.Register<IUserAuthRepository>(c =>
-            //    new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>())); //Use OrmLite DB Connection to persist the UserAuth and AuthProvider info
-            var authRepository = new MongoDBAuthRepositoryNew(mongoDb);
-            container.Register<IUserAuthRepository>(authRepository);
+            var authRepository = new MongoDBAuthRepository(mongoDatabase);
+            container.Register<IUserAuthRepository>(authRepository); //Use OrmLite DB Connection to persist the UserAuth and AuthProvider info
 
-            
-            if(appSettings.Get("RecreateAuthTables", false))
+
+            if (appSettings.Get("RecreateAuthTables", false))
                 authRepository.DropAndReCreateTables(); //Drop and re-create all Auth and registration tables
             else
                 authRepository.CreateMissingTables();   //Create only the missing tables
@@ -204,12 +220,11 @@ namespace SocialBootstrapApi
             Plugins.Add(new RequestLogsFeature());
         }
 
-        private MongoDB.Driver.MongoDatabase CreateMongoDatabase(string databaseName)
+        private MongoDB.Driver.MongoDatabase CreateMongodatabase(string database, MongoServerSettings serverSettings)
         {
-            MongoServerSettings serverSettings = new MongoServerSettings() { Server = new MongoServerAddress("localhost") };
             MongoServer server = new MongoServer(serverSettings);
-            MongoDatabaseSettings settings = new MongoDatabaseSettings(server, databaseName);
-            return new MongoDatabase(server, settings);
+            MongoDatabaseSettings databaseSettings = new MongoDatabaseSettings(server, database);
+            return new MongoDatabase(server, databaseSettings);
         }
 
         public static void Start()

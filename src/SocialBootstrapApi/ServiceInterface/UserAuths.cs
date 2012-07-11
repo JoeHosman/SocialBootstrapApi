@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HTA.ServiceModel;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
@@ -36,15 +37,17 @@ namespace SocialBootstrapApi.ServiceInterface
 	//Implementation. Can be called via any endpoint or format, see: http://servicestack.net/ServiceStack.Hello/
 	public class UserAuthsService : AppServiceBase<UserAuths>
 	{
+        public IUserRepository UserRepository { get; set; }
+        public IAuthsRepository AuthsRepository { get; set; }
 		public IDbConnectionFactory DbFactory { get; set; }
 
 		protected override object Run(UserAuths request)
 		{
 			var response = new UserAuthsResponse {
 				UserSession = base.UserSession,
-				Users = DbFactory.Exec(dbCmd => dbCmd.Select<User>()),
-				UserAuths = DbFactory.Exec(dbCmd => dbCmd.Select<UserAuth>()),
-				OAuthProviders = DbFactory.Exec(dbCmd => dbCmd.Select<UserOAuthProvider>()),
+				Users = UserRepository.GetUsers(),
+                UserAuths = AuthsRepository.GetUserAuths(),
+                OAuthProviders = AuthsRepository.GetUserOAuthProvider(),
 			};
 
 			response.UserAuths.ForEach(x => x.PasswordHash = "[Redacted]");
@@ -54,4 +57,6 @@ namespace SocialBootstrapApi.ServiceInterface
 			return response;
 		}
 	}
+
+
 }

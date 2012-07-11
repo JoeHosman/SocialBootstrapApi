@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using HTA.ServiceModel;
+using MongoDB.Driver;
 using ServiceStack.Common;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;
@@ -55,7 +57,9 @@ namespace SocialBootstrapApi.Models
 			}
 
 			//Resolve the DbFactory from the IOC and persist the user info
-			authService.TryResolve<IDbConnectionFactory>().Exec(dbCmd => dbCmd.Save(user));
+		    authService.TryResolve<IUserRepository>().Save(user);
+
+
 		}
 
 		private static string CreateGravatarUrl(string email, int size = 64)

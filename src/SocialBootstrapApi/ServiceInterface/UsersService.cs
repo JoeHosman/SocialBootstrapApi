@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HTA.ServiceModel;
 using ServiceStack.Common;
 using ServiceStack.OrmLite;
 using ServiceStack.ServiceInterface;
@@ -26,7 +27,7 @@ namespace SocialBootstrapApi.ServiceInterface
 
 	public class UsersService : RestServiceBase<Users>
 	{
-		public IDbConnectionFactory DbFactory { get; set; }
+		public IUserRepository UserRepository { get; set; }
 
 		public override object OnGet(Users request)
 		{
@@ -35,7 +36,8 @@ namespace SocialBootstrapApi.ServiceInterface
 			if (request.UserIds.Length == 0)
 				return response;
 			
-			var users = DbFactory.Exec(dbCmd => dbCmd.GetByIds<User>(request.UserIds));
+            //var users = DbFactory.Exec(dbCmd => dbCmd.GetByIds<User>(request.UserIds));
+		    var users = UserRepository.GetUsersByID(request.UserIds);
 
 			var userInfos = users.ConvertAll(x => x.TranslateTo<UserInfo>());
 
