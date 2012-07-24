@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTA.ServiceModel", "HTA.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTA.Data.MongoDB", "HTA.Data.MongoDB\HTA.Data.MongoDB.csproj", "{E224F591-534B-4082-979C-359961030659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTA.UserAuth.ServiceInterface", "..\HTA.UserAuth.ServiceInterface\HTA.UserAuth.ServiceInterface.csproj", "{DFD3B3EB-FB80-4DF5-A1D5-B99B2CF52724}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{E224F591-534B-4082-979C-359961030659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E224F591-534B-4082-979C-359961030659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E224F591-534B-4082-979C-359961030659}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFD3B3EB-FB80-4DF5-A1D5-B99B2CF52724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFD3B3EB-FB80-4DF5-A1D5-B99B2CF52724}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFD3B3EB-FB80-4DF5-A1D5-B99B2CF52724}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFD3B3EB-FB80-4DF5-A1D5-B99B2CF52724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
