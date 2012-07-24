@@ -10,11 +10,11 @@ using ServiceStack.ServiceInterface.Auth;
 
 namespace HTA.Data.MongoDB
 {
-    public class MongoRepository : IUserRepository, IAuthsRepository
+    public class MongoUserUserAuthRepository : IUserRepository, IAuthsRepository
     {
         private readonly MongoDatabase _mongoDatabase;
 
-        public MongoRepository(MongoDatabase mongoDatabase)
+        public MongoUserUserAuthRepository(MongoDatabase mongoDatabase)
         {
             _mongoDatabase = mongoDatabase;
         }

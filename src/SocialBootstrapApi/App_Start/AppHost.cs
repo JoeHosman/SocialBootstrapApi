@@ -113,7 +113,7 @@ namespace SocialBootstrapApi
             ConfigureAuth(container);
 
             ////Create you're own custom User table
-            var userRepository = new MongoRepository(CreateMongodatabase("hta", new MongoServerSettings() { Server = new MongoServerAddress("localhost") }));
+            var userRepository = new MongoUserUserAuthRepository(CreateMongodatabase("hta", new MongoServerSettings() { Server = new MongoServerAddress("localhost") }));
 
 
             if(appSettings.Get("RecreateAuthTables", false))

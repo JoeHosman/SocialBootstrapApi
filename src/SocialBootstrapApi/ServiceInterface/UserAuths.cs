@@ -39,7 +39,6 @@ namespace SocialBootstrapApi.ServiceInterface
 	{
         public IUserRepository UserRepository { get; set; }
         public IAuthsRepository AuthsRepository { get; set; }
-		public IDbConnectionFactory DbFactory { get; set; }
 
 		protected override object Run(UserAuths request)
 		{
