@@ -88,7 +88,7 @@ namespace SocialBootstrapApi
     public class AppHost : AppHostBase
     {
         public AppHost() //Tell ServiceStack the name and where to find your web services  
-            : base("StarterTemplate ASP.NET Host", typeof(HelloService).Assembly) { }
+            : base("StarterTemplate ASP.NET Host", typeof(UserAuthsService).Assembly) { }
 
         public static AppConfig Config;
 
@@ -116,7 +116,7 @@ namespace SocialBootstrapApi
             var userRepository = new MongoRepository(CreateMongodatabase("hta", new MongoServerSettings() { Server = new MongoServerAddress("localhost") }));
 
 
-            if (appSettings.Get("RecreateAuthTables", false))
+            if(appSettings.Get("RecreateAuthTables", false))
                 userRepository.DropAndReCreateTables(); //Drop and re-create all Auth and registration tables
             else
                 userRepository.CreateMissingTables();   //Create only the missing tables
@@ -125,7 +125,6 @@ namespace SocialBootstrapApi
             container.Register<IAuthsRepository>(userRepository);
 
             //Register application services
-            container.Register(new TodoRepository());
             container.Register<ITwitterGateway>(new TwitterGateway());
 
             //Configure Custom User Defined REST Paths for your services
@@ -148,14 +147,6 @@ namespace SocialBootstrapApi
         private void ConfigureServiceRoutes()
         {
             Routes
-                //Hello World RPC example
-                .Add<Hello>("/hello")
-                .Add<Hello>("/hello/{Name*}")
-
-                //Simple REST TODO example
-                .Add<Todo>("/todos")
-                .Add<Todo>("/todos/{Id}")
-
                 //Custom services for this application
                 .Add<Users>("/users/{UserIds}")
                 .Add<UserProfile>("/profile")
@@ -212,7 +203,7 @@ namespace SocialBootstrapApi
             container.Register<IUserAuthRepository>(authRepository); //Use OrmLite DB Connection to persist the UserAuth and AuthProvider info
 
 
-            if (appSettings.Get("RecreateAuthTables", false))
+            if(appSettings.Get("RecreateAuthTables", false))
                 authRepository.DropAndReCreateTables(); //Drop and re-create all Auth and registration tables
             else
                 authRepository.CreateMissingTables();   //Create only the missing tables
@@ -220,7 +211,7 @@ namespace SocialBootstrapApi
             Plugins.Add(new RequestLogsFeature());
         }
 
-        private MongoDB.Driver.MongoDatabase CreateMongodatabase(string database, MongoServerSettings serverSettings)
+        private MongoDatabase CreateMongodatabase(string database, MongoServerSettings serverSettings)
         {
             MongoServer server = new MongoServer(serverSettings);
             MongoDatabaseSettings databaseSettings = new MongoDatabaseSettings(server, database);
