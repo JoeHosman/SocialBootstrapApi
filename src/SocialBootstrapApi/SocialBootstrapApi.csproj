@@ -218,16 +218,6 @@
     <Content Include="Views\Secure\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HTA.ServiceModel\HTA.ServiceModel.csproj">
-      <Project>{884DC19F-33B4-4561-87CE-AEA4BC01E02F}</Project>
-      <Name>HTA.ServiceModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="HTA.Data.MongoDB\HTA.Data.MongoDB.csproj">
-      <Project>{E224F591-534B-4082-979C-359961030659}</Project>
-      <Name>HTA.Data.MongoDB</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +232,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HTA.Data.MongoDB\HTA.Data.MongoDB.csproj">
+      <Project>{E224F591-534B-4082-979C-359961030659}</Project>
+      <Name>HTA.Data.MongoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HTA.ServiceModel\HTA.ServiceModel.csproj">
+      <Project>{884DC19F-33B4-4561-87CE-AEA4BC01E02F}</Project>
+      <Name>HTA.ServiceModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

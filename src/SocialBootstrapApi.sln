@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialBootstrapApi", "SocialBootstrapApi.csproj", "{EFF33E09-C279-4BAD-BA7C-466A8683CA09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialBootstrapApi", "SocialBootstrapApi\SocialBootstrapApi.csproj", "{EFF33E09-C279-4BAD-BA7C-466A8683CA09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTA.ServiceModel", "..\HTA.ServiceModel\HTA.ServiceModel.csproj", "{884DC19F-33B4-4561-87CE-AEA4BC01E02F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTA.ServiceModel", "HTA.ServiceModel\HTA.ServiceModel.csproj", "{884DC19F-33B4-4561-87CE-AEA4BC01E02F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTA.Data.MongoDB", "HTA.Data.MongoDB\HTA.Data.MongoDB.csproj", "{E224F591-534B-4082-979C-359961030659}"
 EndProject
